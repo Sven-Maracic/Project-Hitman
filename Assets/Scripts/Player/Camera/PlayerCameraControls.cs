@@ -19,7 +19,7 @@ public class PlayerCameraControls : MonoBehaviour
     private void Start()
     {
         cam = GetComponent<Camera>();
-        startingPosition = transform.position;
+        startingPosition = transform.localPosition;
         desiredCamFOV = cam.orthographicSize;
     }
 

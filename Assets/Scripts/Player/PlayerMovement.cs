@@ -21,10 +21,10 @@ public class PlayerMovement : MonoBehaviour
         float horizontalMovementCommand = Input.GetAxis("Horizontal");
         float verticalMovementCommand = Input.GetAxis("Vertical");
 
-        rb.linearVelocity = new Vector2(horizontalMovementCommand * movementSpeed, verticalMovementCommand * movementSpeed);
-        if (rb.linearVelocity.magnitude > maxMovementSpeed)
+        rb.velocity = new Vector2(horizontalMovementCommand * movementSpeed, verticalMovementCommand * movementSpeed);
+        if (rb.velocity.magnitude > maxMovementSpeed)
         {
-            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxMovementSpeed);
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxMovementSpeed);
         }
     }
 
