@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float movementSpeed = 100f;
     [SerializeField] float maxMovementSpeed = 5f;
 
+    [SerializeField] Camera cam;
+
     Rigidbody2D rb;
 
     void Start()
@@ -21,11 +23,19 @@ public class PlayerMovement : MonoBehaviour
         float horizontalMovementCommand = Input.GetAxis("Horizontal");
         float verticalMovementCommand = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector2(horizontalMovementCommand * movementSpeed, verticalMovementCommand * movementSpeed);
-        if (rb.velocity.magnitude > maxMovementSpeed)
+        rb.linearVelocity = new Vector2(horizontalMovementCommand * movementSpeed, verticalMovementCommand * movementSpeed);
+        if (rb.linearVelocity.magnitude > maxMovementSpeed)
         {
-            rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxMovementSpeed);
+            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxMovementSpeed);
         }
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + CursorRotation());
     }
 
+    float CursorRotation()
+    {
+        Vector3 mousePosition = cam.ScreenPointToRay(Input.mousePosition).origin;
+        mousePosition = new Vector3(mousePosition.x, mousePosition.y, 0) - transform.position;
+
+        return Vector3.SignedAngle(transform.right, mousePosition, Vector3.forward);
+    }
 }

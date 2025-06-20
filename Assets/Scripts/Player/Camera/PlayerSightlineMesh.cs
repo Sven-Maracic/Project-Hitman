@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerSightlineMesh : MonoBehaviour
 {
     private Mesh mesh;
-    private float startingAngle;
     Vector3 mousePosition;
 
 
@@ -22,6 +21,7 @@ public class PlayerSightlineMesh : MonoBehaviour
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
+        transform.position = Vector3.zero;
     }
     private void Update()
     {
