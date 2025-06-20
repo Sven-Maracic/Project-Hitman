@@ -32,7 +32,7 @@ public class PlayerStateController : MonoBehaviour
         {
             //cameraShakeScript.StopShake();
             Debug.LogError("died");
-            Time.timeScale = 0f;
+            LevelStateMachine.instance.OnDeath();
             //StateController.instance.OnDeath();
         }
         yield return new WaitForSeconds(invulnerabilityAfterDamageLength);

@@ -15,6 +15,7 @@ public class EnemyBulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.LogWarning(collision.name);
         if (controller = collision.GetComponent<PlayerStateController>())
         {
             controller.TakeDamage();

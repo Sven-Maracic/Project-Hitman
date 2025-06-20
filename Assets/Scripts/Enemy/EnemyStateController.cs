@@ -68,6 +68,8 @@ public class EnemyStateController : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = deadSprite;
         currentState = AvailableStates.Dead;
+        movementScript.StopAllCoroutines();
+        attackScript.StopAllCoroutines();
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
     }
